@@ -6,6 +6,8 @@
 #include "puzzle.h"
 
 int main() {
+    srand(time(NULL));  // Seed the random number generator
+
     Puzzle p;
 
     // Initialize the board
@@ -15,9 +17,11 @@ int main() {
     }
 
     // Print the board
-    print_puzzle(p);
+    print_puzzle(&p);
     shuffle(&p);
-    print_puzzle(p);
+    print_puzzle(&p);
+    move(&p, UP);
+    print_puzzle(&p);
 
     return 0;
 }
