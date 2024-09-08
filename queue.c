@@ -2,15 +2,6 @@
 
 #include <stdlib.h>
 
-int are_puzzles_equal(const Puzzle* p1, const Puzzle* p2) {
-    for (int i = 0; i < PUZZLE_DIMENSION; i++) {
-        if (p1->board[i] != p2->board[i]) {
-            return 0;
-        }
-    }
-    return 1;
-}
-
 Queue* create_queue(int capacity) {
     Queue* queue = (Queue*)malloc(sizeof(Queue));
     queue->data = (Node**)malloc(capacity * sizeof(Node*));

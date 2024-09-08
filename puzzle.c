@@ -4,6 +4,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+int are_puzzles_equal(const Puzzle *p1, const Puzzle *p2) {
+    for (int i = 0; i < PUZZLE_DIMENSION; i++) {
+        if (p1->board[i] != p2->board[i]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 Puzzle create_puzzle() {
     Puzzle p;
     p.blank_index = 0;
