@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 
-#include "puzzle.h"
+#include "node.h"
 
 int main() {
     srand(time(NULL));  // Seed the random number generator
@@ -16,12 +16,20 @@ int main() {
         p.board[i] = i;
     }
 
-    // Print the board
-    print_puzzle(&p);
+    // Shuffle and print the board
     shuffle(&p);
     print_puzzle(&p);
-    move(&p, UP);
-    print_puzzle(&p);
+    printf("\n");
+
+    // Create root node and its children and print them
+    Node root = {NULL, &p, {UP, DOWN, LEFT, RIGHT}, 0};
+    int num_children;
+    Node **children = generate_children(&root, &num_children);
+
+    for (int i = 0; i < num_children; i++) {
+        print_puzzle(children[i]->state);
+        printf("\n");
+    }
 
     return 0;
 }

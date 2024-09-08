@@ -3,6 +3,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int is_valid_move(const Puzzle *p, Direction direction) {
+    switch (direction) {
+        case UP:
+            return p->blank_index >= PUZZLE_SIZE;
+        case DOWN:
+            return p->blank_index < PUZZLE_SIZE * (PUZZLE_SIZE - 1);
+        case LEFT:
+            return p->blank_index % PUZZLE_SIZE != 0;
+        case RIGHT:
+            return p->blank_index % PUZZLE_SIZE != PUZZLE_SIZE - 1;
+        default:
+            return 0;
+    }
+}
+
 void move(Puzzle *p, Direction direction) {
     int blank_row = p->blank_index / PUZZLE_SIZE;
     int blank_col = p->blank_index % PUZZLE_SIZE;
