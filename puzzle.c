@@ -2,13 +2,37 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-Puzzle create_root_puzzle() {
+Puzzle create_puzzle() {
     Puzzle p;
     p.blank_index = 0;
     for (int i = 0; i < PUZZLE_DIMENSION; i++) {
         p.board[i] = i;
     }
+    return p;
+}
+
+Puzzle create_goal_puzzle(const char *type) {
+    Puzzle p;
+
+    if (strcmp(type, "inline") == 0) {
+        int inline_board[9] = {1, 2, 3, 4, 5, 6, 7, 8, 0};
+        memcpy(p.board, inline_board, sizeof(inline_board));
+    } else if (strcmp(type, "spiral") == 0) {
+        int spiral_board[9] = {1, 2, 3, 8, 0, 4, 7, 6, 5};
+        memcpy(p.board, spiral_board, sizeof(spiral_board));
+    } else {
+        // Default to inline
+        int inline_board[9] = {1, 2, 3, 4, 5, 6, 7, 8, 0};
+        memcpy(p.board, inline_board, sizeof(inline_board));
+    }
+
+    return p;
+}
+
+Puzzle create_root_puzzle() {
+    Puzzle p = create_puzzle();
     shuffle(&p);
     return p;
 }

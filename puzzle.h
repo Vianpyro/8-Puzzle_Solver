@@ -11,6 +11,8 @@ typedef struct Puzzle {
     int board[9];
 } Puzzle;
 
+Puzzle create_puzzle();
+Puzzle create_goal_puzzle(const char *type);
 Puzzle create_root_puzzle();
 int is_valid_move(const Puzzle *p, const Direction direction);
 void move(Puzzle *p, const Direction direction);
