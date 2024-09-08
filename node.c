@@ -30,8 +30,10 @@ Node **generate_children(const Node *parent, int *num_children) {
     Node **children = (Node **)malloc(DIRECTION_COUNT * sizeof(Node *));
     *num_children = 0;
 
+    Direction directions[DIRECTION_COUNT] = {UP, DOWN, LEFT, RIGHT};
+
     for (int i = 0; i < DIRECTION_COUNT; i++) {
-        Node *child = generate_child_node(parent, parent->moves[i]);
+        Node *child = generate_child_node(parent, directions[i]);
         if (child != NULL) {
             children[(*num_children)++] = child;
         }

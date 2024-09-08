@@ -3,6 +3,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+Puzzle create_root_puzzle() {
+    Puzzle p;
+    p.blank_index = 0;
+    for (int i = 0; i < PUZZLE_DIMENSION; i++) {
+        p.board[i] = i;
+    }
+    shuffle(&p);
+    return p;
+}
+
 int is_valid_move(const Puzzle *p, Direction direction) {
     switch (direction) {
         case UP:

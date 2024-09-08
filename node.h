@@ -7,7 +7,7 @@
 typedef struct Node {
     struct Node* parent;
     Puzzle* state;
-    Direction moves[4];
+    Direction move;
     int cost;
 } Node;
 

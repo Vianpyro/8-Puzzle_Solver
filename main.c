@@ -8,21 +8,14 @@
 int main() {
     srand(time(NULL));  // Seed the random number generator
 
-    Puzzle p;
+    Puzzle p = create_root_puzzle();
+    Node root = {NULL, &p, NONE, 0};
 
-    // Initialize the board
-    p.blank_index = 0;
-    for (int i = 0; i < 9; i++) {
-        p.board[i] = i;
-    }
-
-    // Shuffle and print the board
-    shuffle(&p);
-    print_puzzle(&p);
+    // Print root puzzle
+    print_puzzle(root.state);
     printf("\n");
 
     // Create root node and its children and print them
-    Node root = {NULL, &p, {UP, DOWN, LEFT, RIGHT}, 0};
     int num_children;
     Node **children = generate_children(&root, &num_children);
 
