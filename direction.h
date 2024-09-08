@@ -11,4 +11,6 @@ typedef enum Direction {
     NONE
 } Direction;
 
+void print_direction(const Direction direction);
+
 #endif  // DIRECTION_H_

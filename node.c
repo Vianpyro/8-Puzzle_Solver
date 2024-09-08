@@ -47,23 +47,8 @@ Node **generate_children(const Node *parent, int *num_children) {
 
 void print_node(const Node *n) {
     printf("Move: ");
-    switch (n->move) {
-        case UP:
-            printf("UP\n");
-            break;
-        case DOWN:
-            printf("DOWN\n");
-            break;
-        case LEFT:
-            printf("LEFT\n");
-            break;
-        case RIGHT:
-            printf("RIGHT\n");
-            break;
-        case NONE:
-            printf("NONE\n");
-            break;
-    }
+    print_direction(n->move);
+
     printf("Cost: %d\n", n->cost);
     print_puzzle(n->state);
 }
