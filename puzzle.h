@@ -12,9 +12,9 @@ typedef struct Puzzle {
 } Puzzle;
 
 Puzzle create_root_puzzle();
-int is_valid_move(const Puzzle *p, Direction direction);
-void move(Puzzle *p, Direction direction);
-void print_puzzle(Puzzle *p);
+int is_valid_move(const Puzzle *p, const Direction direction);
+void move(Puzzle *p, const Direction direction);
+void print_puzzle(const Puzzle *p);
 void shuffle(Puzzle *p);
 void swap(int *a, int *b);
 

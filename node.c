@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-Node *generate_child_node(const Node *parent, Direction direction) {
+Node *generate_child_node(const Node *parent, const Direction direction) {
     if (!is_valid_move(parent->state, direction)) {
         return NULL;
     }
@@ -45,7 +45,7 @@ Node **generate_children(const Node *parent, int *num_children) {
     return children;
 }
 
-void print_node(Node *n) {
+void print_node(const Node *n) {
     printf("Move: ");
     switch (n->move) {
         case UP:

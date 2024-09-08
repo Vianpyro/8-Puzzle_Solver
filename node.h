@@ -11,8 +11,8 @@ typedef struct Node {
     int cost;
 } Node;
 
-Node* generate_child_node(const Node* parent, Direction direction);
+Node* generate_child_node(const Node* parent, const Direction direction);
 Node** generate_children(const Node* parent, int* num_children);
-void print_node(Node* n);
+void print_node(const Node* n);
 
 #endif  // NODE_H_

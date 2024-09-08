@@ -13,7 +13,7 @@ Puzzle create_root_puzzle() {
     return p;
 }
 
-int is_valid_move(const Puzzle *p, Direction direction) {
+int is_valid_move(const Puzzle *p, const Direction direction) {
     switch (direction) {
         case UP:
             return p->blank_index >= PUZZLE_SIZE;
@@ -28,7 +28,7 @@ int is_valid_move(const Puzzle *p, Direction direction) {
     }
 }
 
-void move(Puzzle *p, Direction direction) {
+void move(Puzzle *p, const Direction direction) {
     int blank_row = p->blank_index / PUZZLE_SIZE;
     int blank_col = p->blank_index % PUZZLE_SIZE;
 
@@ -61,7 +61,7 @@ void move(Puzzle *p, Direction direction) {
     p->blank_index = new_index;
 }
 
-void print_puzzle(Puzzle *p) {
+void print_puzzle(const Puzzle *p) {
     for (int i = 0; i < PUZZLE_DIMENSION; i++) {
         printf("%d ", p->board[i]);
         if (i % PUZZLE_SIZE == PUZZLE_SIZE - 1) {
