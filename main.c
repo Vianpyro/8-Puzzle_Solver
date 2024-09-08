@@ -12,7 +12,7 @@ int main() {
     Node root = {NULL, &p, NONE, 0};
 
     // Print root puzzle
-    print_puzzle(root.state);
+    print_node(&root);
     printf("\n");
 
     // Create root node and its children and print them
@@ -20,9 +20,15 @@ int main() {
     Node **children = generate_children(&root, &num_children);
 
     for (int i = 0; i < num_children; i++) {
-        print_puzzle(children[i]->state);
+        print_node(children[i]);
         printf("\n");
     }
+
+    // Free memory
+    for (int i = 0; i < num_children; i++) {
+        free(children[i]);
+    }
+    free(children);
 
     return 0;
 }

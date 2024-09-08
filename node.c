@@ -1,6 +1,7 @@
 #include "node.h"
 
-#include <stdlib.h>  // Include the header file for NULL
+#include <stdio.h>
+#include <stdlib.h>
 
 Node *generate_child_node(const Node *parent, Direction direction) {
     if (!is_valid_move(parent->state, direction)) {
@@ -23,6 +24,7 @@ Node *generate_child_node(const Node *parent, Direction direction) {
     child->parent = (Node *)parent;
     child->state = new_state;
     child->move = direction;
+    child->cost = parent->cost;
 
     return child;
 }
@@ -41,4 +43,27 @@ Node **generate_children(const Node *parent, int *num_children) {
     }
 
     return children;
+}
+
+void print_node(Node *n) {
+    printf("Move: ");
+    switch (n->move) {
+        case UP:
+            printf("UP\n");
+            break;
+        case DOWN:
+            printf("DOWN\n");
+            break;
+        case LEFT:
+            printf("LEFT\n");
+            break;
+        case RIGHT:
+            printf("RIGHT\n");
+            break;
+        case NONE:
+            printf("NONE\n");
+            break;
+    }
+    printf("Cost: %d\n", n->cost);
+    print_puzzle(n->state);
 }

@@ -13,5 +13,6 @@ typedef struct Node {
 
 Node* generate_child_node(const Node* parent, Direction direction);
 Node** generate_children(const Node* parent, int* num_children);
+void print_node(Node* n);
 
 #endif  // NODE_H_
