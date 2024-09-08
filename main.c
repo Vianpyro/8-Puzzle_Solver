@@ -15,12 +15,9 @@ int main() {
     }
 
     // Print the board
-    for (int i = 0; i < 9; i++) {
-        printf("%d ", p.board[i]);
-        if (i % 3 == 2) {
-            printf("\n");
-        }
-    }
+    print_puzzle(p);
+    shuffle(&p);
+    print_puzzle(p);
 
     return 0;
 }
