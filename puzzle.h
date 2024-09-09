@@ -11,7 +11,7 @@ typedef struct Puzzle {
     int board[9];
 } Puzzle;
 
-int are_puzzles_equal(const Puzzle *p1, const Puzzle *p2);
+int compare_puzzles(const Puzzle *p1, const Puzzle *p2);
 Puzzle create_puzzle();
 Puzzle create_goal_puzzle(const char *type);
 Puzzle create_root_puzzle();

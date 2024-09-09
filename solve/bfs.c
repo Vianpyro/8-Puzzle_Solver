@@ -17,7 +17,7 @@ Node* bfs_solve(Puzzle* start, Puzzle* goal) {
     while (!is_queue_empty(queue)) {
         Node* current = dequeue(queue);
 
-        if (are_puzzles_equal(current->state, goal)) {
+        if (compare_puzzles(current->state, goal)) {
             // Free the remaining nodes in the queue
             while (!is_queue_empty(queue)) {
                 Node* temp = dequeue(queue);
