@@ -6,7 +6,7 @@
 #include "solve/bfs.h"
 
 int main() {
-    Puzzle start = create_goal_puzzle("inline");
+    Puzzle start = {7, {1, 2, 3, 4, 5, 6, 7, 0, 8}};
     Puzzle goal = create_goal_puzzle("inline");
 
     // Appelle la fonction BFS pour résoudre le puzzle
