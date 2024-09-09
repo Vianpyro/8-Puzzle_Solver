@@ -4,13 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-int are_puzzles_equal(const Puzzle *p1, const Puzzle *p2) {
-    for (int i = 0; i < PUZZLE_DIMENSION; i++) {
-        if (p1->board[i] != p2->board[i]) {
-            return 0;
-        }
-    }
-    return 1;
+// Function to compare two Puzzle boards
+int compare_puzzles(const Puzzle *a, const Puzzle *b) {
+    return memcmp(a->board, b->board, sizeof(int) * PUZZLE_DIMENSION) == 0;
 }
 
 Puzzle create_puzzle() {
@@ -25,18 +21,10 @@ Puzzle create_puzzle() {
 Puzzle create_goal_puzzle(const char *type) {
     Puzzle p;
 
-    if (strcmp(type, "inline") == 0) {
-        p.blank_index = 8;
-        int inline_board[9] = {1, 2, 3, 4, 5, 6, 7, 8, 0};
-        memcpy(p.board, inline_board, sizeof(inline_board));
-    } else if (strcmp(type, "spiral") == 0) {
-        p.blank_index = 4;
-        int spiral_board[9] = {1, 2, 3, 8, 0, 4, 7, 6, 5};
-        memcpy(p.board, spiral_board, sizeof(spiral_board));
+    if (strcmp(type, "spiral") == 0) {
+        p = (Puzzle){4, {1, 2, 3, 8, 0, 4, 7, 6, 5}};
     } else {  // Default to inline
-        p.blank_index = 8;
-        int inline_board[9] = {1, 2, 3, 4, 5, 6, 7, 8, 0};
-        memcpy(p.board, inline_board, sizeof(inline_board));
+        p = (Puzzle){8, {1, 2, 3, 4, 5, 6, 7, 8, 0}};
     }
 
     return p;
