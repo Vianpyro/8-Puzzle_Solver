@@ -1,0 +1,41 @@
+name: Compilation with CMake and GCC
+
+on:
+  push: null
+
+permissions:
+  contents: read # Define read permissions as required by the job.
+
+jobs:
+  build-cmake:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fetch repository
+        uses: actions/checkout@main
+
+      - name: Configure CMake
+        uses: jwlawson/actions-setup-cmake@v1.14.1
+        with:
+          cmake-version: "latest"
+
+      - name: Compile project with CMake
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make
+
+  build-gcc:
+    runs-on: ubuntu-latest
+    needs: build-cmake
+
+    steps:
+      - name: Fetch repository
+        uses: actions/checkout@main
+
+      - name: Install GCC
+        run: sudo apt-get update && sudo apt-get install -y gcc
+
+      - name: Compile project with GCC
+        run: gcc -o 8_puzzle ./*.c
