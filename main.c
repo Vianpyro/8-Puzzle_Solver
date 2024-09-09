@@ -3,32 +3,25 @@
 #include <string.h>
 #include <time.h>
 
-#include "node.h"
+#include "solve/bfs.h"
 
 int main() {
-    srand(time(NULL));  // Seed the random number generator
+    Puzzle start = create_goal_puzzle("inline");
+    Puzzle goal = create_goal_puzzle("inline");
 
-    Puzzle p = create_root_puzzle();
-    Node root = {NULL, &p, NONE, 0};
+    // Appelle la fonction BFS pour résoudre le puzzle
+    Node* solution = bfs_solve(&start, &goal);
 
-    // Print root puzzle
-    print_node(&root);
-    printf("\n");
-
-    // Create root node and its children and print them
-    int num_children;
-    Node **children = generate_children(&root, &num_children);
-
-    for (int i = 0; i < num_children; i++) {
-        print_node(children[i]);
-        printf("\n");
+    if (solution) {
+        printf("Solution found!\n");
+        Node* current = solution;
+        while (current != NULL) {
+            print_puzzle(current->state);
+            current = current->parent;
+        }
+    } else {
+        printf("No solution found.\n");
     }
-
-    // Free memory
-    for (int i = 0; i < num_children; i++) {
-        free(children[i]);
-    }
-    free(children);
 
     return 0;
 }
