@@ -22,8 +22,11 @@ int main(int argc, char* argv[]) {
     // Display the mode
     printf("Mode: %s\n", mode);
 
+    // Seed the random number generator
+    srand(time(NULL));
+
     // Initialize the puzzle
-    Puzzle start = {0, {0, 2, 3, 4, 5, 6, 7, 1, 8}};
+    Puzzle start = create_random_puzzle();
     Puzzle goal = create_goal_puzzle("inline");
 
     Node* solution = NULL;

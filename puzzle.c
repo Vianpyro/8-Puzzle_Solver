@@ -30,7 +30,7 @@ Puzzle create_goal_puzzle(const char *type) {
     return p;
 }
 
-Puzzle create_root_puzzle() {
+Puzzle create_random_puzzle() {
     Puzzle p = create_puzzle();
     shuffle(&p);
     return p;
