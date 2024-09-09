@@ -31,6 +31,9 @@ int main(int argc, char* argv[]) {
     // Call the BFS solver
     if (strcmp(mode, "bfs") == 0) {
         solution = bfs_solve(&start, &goal);
+    } else {
+        printf("Unknown mode: %s\n", mode);
+        return 1;
     }
 
     if (solution) {
