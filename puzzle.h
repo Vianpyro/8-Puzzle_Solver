@@ -17,7 +17,7 @@ Puzzle create_goal_puzzle(const char *type);
 Puzzle create_root_puzzle();
 int is_valid_move(const Puzzle *p, const Direction direction);
 void move(Puzzle *p, const Direction direction);
-void print_puzzle(const Puzzle *p);
+void print_puzzle(const Puzzle *p, int debug);
 void shuffle(Puzzle *p);
 void swap(int *a, int *b);
 

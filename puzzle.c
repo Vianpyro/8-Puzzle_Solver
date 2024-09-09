@@ -84,14 +84,17 @@ void move(Puzzle *p, const Direction direction) {
     p->blank_index = new_index;
 }
 
-void print_puzzle(const Puzzle *p) {
+void print_puzzle(const Puzzle *p, int debug) {
     for (int i = 0; i < PUZZLE_DIMENSION; i++) {
         printf("%d ", p->board[i]);
         if (i % PUZZLE_SIZE == PUZZLE_SIZE - 1) {
             printf("\n");
         }
     }
-    printf("Blank index: %d\n", p->blank_index);
+
+    if (debug) {
+        printf("Blank index: %d\n", p->blank_index);
+    }
 }
 
 void shuffle(Puzzle *p) {
