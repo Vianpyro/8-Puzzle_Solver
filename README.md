@@ -34,19 +34,19 @@ cd 8-Puzzle_Solver
 
 Build the project:
 
-Linux (GCC):
+**GCC** (Linux/Windows):
 
 ```bash
 gcc ./*.c ./solve/*.c -o 8-puzzle
 ```
 
-macOS (Clang):
+**Clang** (macOS):
 
 ```bash
 clang ./*.c ./solve/*.c -o 8-puzzle
 ```
 
-Windows (CMake):
+**CMake** (Linux/Windows):
 
 _Make sure [CMake file](CMakeLists.txt) is in the folder_
 
