@@ -16,7 +16,7 @@ int main() {
         printf("Solution found!\n");
         Node* current = solution;
         while (current != NULL) {
-            print_puzzle(current->state);
+            print_node(current);
             current = current->parent;
         }
     } else {

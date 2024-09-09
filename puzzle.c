@@ -26,13 +26,15 @@ Puzzle create_goal_puzzle(const char *type) {
     Puzzle p;
 
     if (strcmp(type, "inline") == 0) {
+        p.blank_index = 8;
         int inline_board[9] = {1, 2, 3, 4, 5, 6, 7, 8, 0};
         memcpy(p.board, inline_board, sizeof(inline_board));
     } else if (strcmp(type, "spiral") == 0) {
+        p.blank_index = 4;
         int spiral_board[9] = {1, 2, 3, 8, 0, 4, 7, 6, 5};
         memcpy(p.board, spiral_board, sizeof(spiral_board));
-    } else {
-        // Default to inline
+    } else {  // Default to inline
+        p.blank_index = 8;
         int inline_board[9] = {1, 2, 3, 4, 5, 6, 7, 8, 0};
         memcpy(p.board, inline_board, sizeof(inline_board));
     }
