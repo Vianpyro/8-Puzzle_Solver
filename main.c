@@ -27,6 +27,17 @@ int main(int argc, char* argv[]) {
 
     // Initialize the puzzle
     Puzzle start = create_random_puzzle();
+
+    // Check if the puzzle is solvable
+    if (is_solvable(start)) {
+        printf("Solving puzzle:\n");
+    } else {
+        printf("Puzzle is not solvable\n");
+        return 1;
+    }
+
+    print_puzzle(&start, 0);
+
     Puzzle goal = create_goal_puzzle("inline");
 
     Node* solution = NULL;
@@ -40,7 +51,6 @@ int main(int argc, char* argv[]) {
     }
 
     if (solution) {
-        printf("Solution found!\n");
         Node* current = solution;
         while (current != NULL) {
             print_node(current, 0);

@@ -36,6 +36,22 @@ Puzzle create_random_puzzle() {
     return p;
 }
 
+int get_inversion_count(const Puzzle puzzle) {
+    int inv_count = 0;
+
+    for (int i = 0; i < PUZZLE_DIMENSION - 1; i++)
+        for (int j = i + 1; j < PUZZLE_DIMENSION; j++)
+            if (puzzle.board[j] && puzzle.board[i] && puzzle.board[i] > puzzle.board[j])
+                inv_count++;
+
+    return inv_count;
+}
+
+int is_solvable(const Puzzle puzzle) {
+    int inversion_count = get_inversion_count(puzzle);
+    return (inversion_count % 2 == 0);
+}
+
 int is_valid_move(const Puzzle *p, const Direction direction) {
     switch (direction) {
         case UP:
