@@ -8,11 +8,11 @@
 
 typedef struct Puzzle {
     int blank_index;
-    int board[9];
+    int board[PUZZLE_DIMENSION];
 } Puzzle;
 
 int compare_puzzles(const Puzzle *p1, const Puzzle *p2);
-Puzzle create_puzzle();
+Puzzle create_puzzle(const char *puzzle_string);
 Puzzle create_goal_puzzle(const char *type);
 Puzzle create_random_puzzle();
 int get_blank_index(const Puzzle *p);
