@@ -24,7 +24,7 @@ Node *generate_child_node(const Node *parent, const Direction direction) {
     child->parent = (Node *)parent;
     child->state = new_state;
     child->move = direction;
-    child->cost = parent->cost;
+    child->cost = 0;
 
     return child;
 }
