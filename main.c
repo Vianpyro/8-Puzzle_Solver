@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
     if (solution) {
         Node* current = solution;
         while (current != NULL) {
-            print_node(current, 0);
+            print_node(current, 1);
             current = current->parent;
         }
     } else {
