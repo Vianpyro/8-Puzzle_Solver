@@ -24,7 +24,7 @@ Node *generate_child_node(const Node *parent, const Direction direction) {
     child->parent = (Node *)parent;
     child->state = new_state;
     child->move = direction;
-    child->cost = parent->cost;
+    child->cost = 0;
 
     return child;
 }
@@ -48,5 +48,6 @@ Node **generate_children(const Node *parent, int *num_children) {
 void print_node(const Node *n, int debug) {
     printf("Move: ");
     print_direction(n->move);
+    printf("Cost: %d\n", n->cost);
     print_puzzle(n->state, debug);
 }

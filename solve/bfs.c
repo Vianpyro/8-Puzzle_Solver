@@ -49,6 +49,17 @@ Node* bfs_solve(Puzzle* start, Puzzle* goal) {
         nodes_expanded += num_children;  // Increment nodes expanded
 
         for (int i = 0; i < num_children; i++) {
+            // Calculate cost of the child node
+            int x1, y1, x2, y2;
+
+            for (int j = 0; j < PUZZLE_DIMENSION; j++) {
+                if (current->state->board[j] != 0) {
+                    find_coord(current->state, current->state->board[j], &x1, &y1);
+                    find_coord(goal, current->state->board[j], &x2, &y2);
+                    children[i]->cost += manhattan(x1, y1, x2, y2);
+                }
+            }
+
             // Check if the child state has been visited
             if (!contains(&visited, children[i]->state)) {
                 enqueue(queue, children[i]);           // Enqueue unvisited child
