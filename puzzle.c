@@ -9,12 +9,23 @@ int compare_puzzles(const Puzzle *a, const Puzzle *b) {
     return memcmp(a->board, b->board, sizeof(int) * PUZZLE_DIMENSION) == 0;
 }
 
-Puzzle create_puzzle() {
+Puzzle create_puzzle(const char *puzzle_string) {
     Puzzle p;
     p.blank_index = 0;
-    for (int i = 0; i < PUZZLE_DIMENSION; i++) {
-        p.board[i] = i;
+
+    if (strlen(puzzle_string) == PUZZLE_DIMENSION) {
+        for (int i = 0; i < PUZZLE_DIMENSION; i++) {
+            p.board[i] = puzzle_string[i] - '0';
+            if (p.board[i] == 0) {
+                p.blank_index = i;
+            }
+        }
+    } else {
+        for (int i = 0; i < PUZZLE_DIMENSION; i++) {
+            p.board[i] = i;
+        }
     }
+
     return p;
 }
 
@@ -31,9 +42,16 @@ Puzzle create_goal_puzzle(const char *type) {
 }
 
 Puzzle create_random_puzzle() {
-    Puzzle p = create_puzzle();
+    Puzzle p = create_puzzle("");
     shuffle(&p);
     return p;
+}
+
+int get_blank_index(const Puzzle *p) {
+    for (int i = 0; i < PUZZLE_DIMENSION; i++)
+        if (p->board[i] == 0) return i;
+
+    return -1;
 }
 
 int get_inversion_count(const Puzzle puzzle) {
@@ -126,12 +144,7 @@ void shuffle(Puzzle *p) {
     }
 
     // Update blank index
-    for (int i = 0; i < PUZZLE_DIMENSION; i++) {
-        if (p->board[i] == 0) {
-            p->blank_index = i;
-            break;
-        }
-    }
+    p->blank_index = get_blank_index(p);
 }
 
 void swap(int *a, int *b) {
