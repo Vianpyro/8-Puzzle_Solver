@@ -13,7 +13,11 @@ Node *generate_child_node(const Node *parent, const Direction direction) {
 
     *new_state = *(parent->state);
 
-    move(new_state, direction);
+    // Free new_state if move fails
+    if (!move(new_state, direction)) {
+        free(new_state);
+        return NULL;
+    }
 
     Node *child = (Node *)malloc(sizeof(Node));
     if (!child) {
@@ -24,7 +28,7 @@ Node *generate_child_node(const Node *parent, const Direction direction) {
     child->parent = (Node *)parent;
     child->state = new_state;
     child->move = direction;
-    child->cost = 0;
+    child->cost = parent->cost + 1;
 
     return child;
 }
