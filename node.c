@@ -8,6 +8,9 @@ Node *generate_child_node(const Node *parent, const Direction direction) {
         return NULL;
     }
 
+    Node *child = (Node *)malloc(sizeof(Node));
+    if (!child) return NULL;
+
     Puzzle *new_state = (Puzzle *)malloc(sizeof(Puzzle));
     if (!new_state) return NULL;
 
@@ -16,12 +19,6 @@ Node *generate_child_node(const Node *parent, const Direction direction) {
     // Free new_state if move fails
     if (!move(new_state, direction)) {
         free(new_state);
-        return NULL;
-    }
-
-    Node *child = (Node *)malloc(sizeof(Node));
-    if (!child) {
-        free(new_state);  // Ensure to free new_state if child allocation fails
         return NULL;
     }
 
@@ -35,6 +32,8 @@ Node *generate_child_node(const Node *parent, const Direction direction) {
 
 Node **generate_children(const Node *parent, int *num_children) {
     Node **children = (Node **)malloc(DIRECTION_COUNT * sizeof(Node *));
+    if (!children) return NULL;
+
     *num_children = 0;
 
     Direction directions[DIRECTION_COUNT] = {UP, DOWN, LEFT, RIGHT};
