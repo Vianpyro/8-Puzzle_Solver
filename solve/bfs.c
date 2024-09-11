@@ -31,6 +31,7 @@ Node* bfs_solve(Puzzle* start, Puzzle* goal) {
 
         Node* current = dequeue(queue);
 
+        // Check if the goal state is reached
         if (compare_puzzles(current->state, goal)) {
             // Free the remaining nodes in the queue
             while (!is_queue_empty(queue)) {
@@ -40,8 +41,11 @@ Node* bfs_solve(Puzzle* start, Puzzle* goal) {
             }
             free_queue(queue);
             free_hashset(&visited);  // Free the HashSet memory
+
+            // Print statistics
             printf("Solution found at depth %d after expanding %d nodes.\n", depth, nodes_expanded);
-            return current;  // Found the goal
+
+            return current;  // Return the solution node
         }
 
         // Generate the children nodes of the current node
@@ -51,7 +55,7 @@ Node* bfs_solve(Puzzle* start, Puzzle* goal) {
 
         for (int i = 0; i < num_children; i++) {
             // Calculate cost of the child node
-            children[i]->cost += manhattan_cost(children[i]->state, goal);
+            children[i]->cost = manhattan_cost(children[i]->state, goal);
 
             // Check if the child state has been visited
             if (!contains(&visited, children[i]->state)) {
