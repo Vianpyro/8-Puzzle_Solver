@@ -40,9 +40,7 @@ Node **generate_children(const Node *parent, int *num_children) {
 
     for (int i = 0; i < DIRECTION_COUNT; i++) {
         Node *child = generate_child_node(parent, directions[i]);
-        if (child != NULL) {
-            children[(*num_children)++] = child;
-        }
+        if (child) children[(*num_children)++] = child;
     }
 
     return children;
