@@ -17,7 +17,7 @@ Node *generate_child_node(const Node *parent, const Direction direction) {
 
     Node *child = (Node *)malloc(sizeof(Node));
     if (!child) {
-        free(new_state);
+        free(new_state);  // Ensure to free new_state if child allocation fails
         return NULL;
     }
 
@@ -39,6 +39,8 @@ Node **generate_children(const Node *parent, int *num_children) {
         Node *child = generate_child_node(parent, directions[i]);
         if (child != NULL) {
             children[(*num_children)++] = child;
+        } else {
+            free(child);  // Ensure to free child if not NULL
         }
     }
 

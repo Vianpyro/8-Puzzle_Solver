@@ -35,7 +35,8 @@ Node* bfs_solve(Puzzle* start, Puzzle* goal) {
             // Free the remaining nodes in the queue
             while (!is_queue_empty(queue)) {
                 Node* temp = dequeue(queue);
-                free(temp);
+                free(temp->state);  // Free the state associated with the node
+                free(temp);         // Free the node itself
             }
             free_queue(queue);
             free_hashset(&visited);  // Free the HashSet memory
@@ -65,7 +66,8 @@ Node* bfs_solve(Puzzle* start, Puzzle* goal) {
                 enqueue(queue, children[i]);           // Enqueue unvisited child
                 insert(&visited, children[i]->state);  // Mark as visited
             } else {
-                free(children[i]);  // Free memory for already visited child
+                free(children[i]->state);  // Free state memory for already visited child
+                free(children[i]);         // Free memory for already visited child
             }
         }
 
