@@ -12,6 +12,15 @@ void find_coord(Puzzle *puzzle, int value, int *x, int *y) {
     }
 }
 
-int manhattan(int x1, int y1, int x2, int y2) {
-    return abs(x1 - x2) + abs(y1 - y2);
+int manhattan_cost(Puzzle *current, Puzzle *goal) {
+    int cost = 0;
+    for (int j = 0; j < PUZZLE_DIMENSION; j++) {
+        if (current->board[j] != 0) {
+            int x1, y1, x2, y2;
+            find_coord(current, current->board[j], &x1, &y1);
+            find_coord(goal, current->board[j], &x2, &y2);
+            cost += abs(x1 - x2) + abs(y1 - y2);
+        }
+    }
+    return cost;
 }
