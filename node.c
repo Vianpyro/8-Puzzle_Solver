@@ -39,8 +39,6 @@ Node **generate_children(const Node *parent, int *num_children) {
         Node *child = generate_child_node(parent, directions[i]);
         if (child != NULL) {
             children[(*num_children)++] = child;
-        } else {
-            free(child);  // Ensure to free child if not NULL
         }
     }
 
