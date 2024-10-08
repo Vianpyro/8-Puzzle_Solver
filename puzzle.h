@@ -19,7 +19,7 @@ int get_blank_index(const Puzzle *p);
 int get_inversion_count(const Puzzle puzzle);
 int is_solvable(const Puzzle puzzle);
 int is_valid_move(const Puzzle *p, const Direction direction);
-void move(Puzzle *p, const Direction direction);
+int move(Puzzle *p, const Direction direction);
 void print_puzzle(const Puzzle *p, int debug);
 void shuffle(Puzzle *p);
 void swap(int *a, int *b);

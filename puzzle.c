@@ -85,7 +85,7 @@ int is_valid_move(const Puzzle *p, const Direction direction) {
     }
 }
 
-void move(Puzzle *p, const Direction direction) {
+int move(Puzzle *p, const Direction direction) {
     int blank_row = p->blank_index / PUZZLE_SIZE;
     int blank_col = p->blank_index % PUZZLE_SIZE;
 
@@ -106,16 +106,18 @@ void move(Puzzle *p, const Direction direction) {
             new_col++;
             break;
         case NONE:
-            return;
+            return 0;  // No move made
     }
 
     if (new_row < 0 || new_row >= PUZZLE_SIZE || new_col < 0 || new_col >= PUZZLE_SIZE) {
-        return;
+        return 0;  // Move is out of bounds
     }
 
     int new_index = new_row * PUZZLE_SIZE + new_col;
     swap(&p->board[p->blank_index], &p->board[new_index]);
     p->blank_index = new_index;
+
+    return 1;  // Move successful
 }
 
 void print_puzzle(const Puzzle *p, int debug) {
