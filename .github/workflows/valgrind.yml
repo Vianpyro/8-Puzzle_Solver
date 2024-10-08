@@ -7,10 +7,10 @@ on:
 jobs:
   compile:
     name: Compile C Project
-    uses: Vianpyro/Valgrind/.github/workflows/compile.yml@main
+    uses: Vianpyro/Valgrind/.github/workflows/compile.yml@v1
 
   test-valgrind:
     name: Test Memory Leaks with Valgrind
     needs: compile
-    uses: Vianpyro/Valgrind/.github/workflows/valgrind.yml@main
+    uses: Vianpyro/Valgrind/.github/workflows/valgrind.yml@v1
   
