@@ -4,6 +4,6 @@
 #include "puzzle.h"
 
 void find_coord(Puzzle *puzzle, int value, int *x, int *y);
-int manhattan(int x1, int y1, int x2, int y2);
+int manhattan_cost(Puzzle *current, Puzzle *goal);
 
 #endif  // COST_H_

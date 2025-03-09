@@ -31,16 +31,21 @@ Node* bfs_solve(Puzzle* start, Puzzle* goal) {
 
         Node* current = dequeue(queue);
 
+        // Check if the goal state is reached
         if (compare_puzzles(current->state, goal)) {
             // Free the remaining nodes in the queue
             while (!is_queue_empty(queue)) {
                 Node* temp = dequeue(queue);
-                free(temp);
+                free(temp->state);  // Free the state associated with the node
+                free(temp);         // Free the node itself
             }
             free_queue(queue);
             free_hashset(&visited);  // Free the HashSet memory
+
+            // Print statistics
             printf("Solution found at depth %d after expanding %d nodes.\n", depth, nodes_expanded);
-            return current;  // Found the goal
+
+            return current;  // Return the solution node
         }
 
         // Generate the children nodes of the current node
@@ -50,22 +55,15 @@ Node* bfs_solve(Puzzle* start, Puzzle* goal) {
 
         for (int i = 0; i < num_children; i++) {
             // Calculate cost of the child node
-            int x1, y1, x2, y2;
-
-            for (int j = 0; j < PUZZLE_DIMENSION; j++) {
-                if (current->state->board[j] != 0) {
-                    find_coord(current->state, current->state->board[j], &x1, &y1);
-                    find_coord(goal, current->state->board[j], &x2, &y2);
-                    children[i]->cost += manhattan(x1, y1, x2, y2);
-                }
-            }
+            children[i]->cost = manhattan_cost(children[i]->state, goal);
 
             // Check if the child state has been visited
             if (!contains(&visited, children[i]->state)) {
                 enqueue(queue, children[i]);           // Enqueue unvisited child
                 insert(&visited, children[i]->state);  // Mark as visited
             } else {
-                free(children[i]);  // Free memory for already visited child
+                free(children[i]->state);  // Free state memory for already visited child
+                free(children[i]);         // Free memory for already visited child
             }
         }
 
